@@ -124,7 +124,7 @@ export function SiteProvider({ children }: { children: React.ReactNode }) {
     let title = `${siteData.settings.businessName} – Wellness & Personal Transformation`;
     let description = siteData.settings.tagline;
     let keywords = 'wellness, mindfulness, personal development';
-    let ogImage = siteData.home.hero.imageUrl;
+    let ogImage = siteData.home.hero.imageUrl || siteData.home.philosophy.imageUrl;
 
     if (cleanPath.startsWith('/blog/')) {
       const slug = cleanPath.replace('/blog/', '');

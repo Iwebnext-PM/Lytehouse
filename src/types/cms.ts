@@ -81,6 +81,7 @@ export interface HomeContent {
     subheadline: string;
     primaryCtaLabel: string;
     secondaryCtaLabel: string;
+    videoUrl: string;
     imageUrl: string;
     imageAlt: string;
   };

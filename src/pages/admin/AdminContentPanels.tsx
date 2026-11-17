@@ -239,14 +239,18 @@ export function ContentEditorPanel({
               />
             </div>
           </div>
-          <ImageSelector
-            label="Hero Background Image"
-            value={homeDraft.hero.imageUrl}
-            onChange={(url) =>
-              setHomeDraft({ ...homeDraft, hero: { ...homeDraft.hero, imageUrl: url } })
-            }
-            media={media}
-          />
+          <div className="space-y-1">
+            <label className="text-xs font-semibold text-[#4A5349]">Hero Background Video URL</label>
+            <input
+              type="url"
+              value={homeDraft.hero.videoUrl || ''}
+              onChange={(e) =>
+                setHomeDraft({ ...homeDraft, hero: { ...homeDraft.hero, videoUrl: e.target.value } })
+              }
+              placeholder="https://..."
+              className="w-full px-3 py-2 rounded-lg border border-[#D8D2C5] text-sm"
+            />
+          </div>
 
           <hr className="border-[#E2DDD2]" />
           <h3 className="text-xl font-normal text-[#1E241E]">Philosophy Section</h3>

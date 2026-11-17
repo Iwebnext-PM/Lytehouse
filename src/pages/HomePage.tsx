@@ -1,13 +1,30 @@
+import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Star } from 'lucide-react';
 import { ResilientImage } from '../components/ResilientImage';
 import { Reveal } from '../components/Reveal';
 import { ServiceIcon } from '../components/ServiceIcon';
+import { DEFAULT_HERO_VIDEO } from '../data/defaultSiteData';
 import { formatPhoneDisplay, useSite } from '../context/SiteContext';
 
 export function HomePage() {
   const { siteData, navigate, openBookingModal } = useSite();
   const { home, settings, services, testimonials } = siteData;
   const toggles = settings.sectionToggles;
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [videoFailed, setVideoFailed] = useState(false);
+
+  const heroVideoSrc = home.hero.videoUrl || DEFAULT_HERO_VIDEO;
+
+  useEffect(() => {
+    setVideoFailed(false);
+    const videoEl = videoRef.current;
+    if (videoEl) {
+      videoEl.muted = true;
+      videoEl.play().catch(() => {
+        // Browser autoplay policy fallback handled gracefully
+      });
+    }
+  }, [heroVideoSrc]);
 
   const featuredServices = services.filter((s) => s.active && s.featured).slice(0, 3);
   const displayServices =
@@ -19,18 +36,28 @@ export function HomePage() {
 
   return (
     <div>
-      {/* 1. Full-Width Editorial Hero */}
-      <section className="relative min-h-[78vh] flex items-end overflow-hidden bg-[#1E241E]">
-        <div className="absolute inset-0">
-          <ResilientImage
-            src={home.hero.imageUrl}
-            alt={home.hero.imageAlt}
-            fallbackTitle={settings.businessName}
-            className="w-full h-full object-cover"
-          />
+      {/* 1. Full-Width Video Hero */}
+      <section className="relative min-h-[78vh] flex items-end overflow-hidden bg-gradient-to-br from-[#232B23] via-[#1E241E] to-[#2E382D]">
+        <div className="absolute inset-0 w-full h-full">
+          {!videoFailed && heroVideoSrc && (
+            <video
+              ref={videoRef}
+              key={heroVideoSrc}
+              src={heroVideoSrc}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              onError={() => setVideoFailed(true)}
+              aria-hidden="true"
+              className="w-full h-full object-cover"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+          )}
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-t from-[#141914]/90 via-[#141914]/45 to-[#141914]/20"
+            className="absolute inset-0 bg-gradient-to-t from-[#141914]/75 via-[#141914]/35 to-[#141914]/20 pointer-events-none"
           />
         </div>
 

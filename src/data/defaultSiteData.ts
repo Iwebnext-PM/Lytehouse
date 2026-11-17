@@ -88,6 +88,9 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   },
 };
 
+export const DEFAULT_HERO_VIDEO =
+  'https://oxxug257o7jovuon.private.blob.vercel-storage.com/lyte.mp4?vercel-blob-delegation=eyJzdG9yZUlkIjoic3RvcmVfT1hYVWcyNTdPN2pvdlVPTiIsIm93bmVySWQiOiJ0ZWFtX1pXeVExNmE0d1VlY3BmNWpnbU55YjB5biIsInBhdGhuYW1lIjoiKiIsIm9wZXJhdGlvbnMiOlsiZ2V0IiwiaGVhZCJdLCJ2YWxpZFVudGlsIjoxNzk0OTc4NDYxMjM1LCJpYXQiOjE3OTQ5MzUyNjI0MzZ9.lvTsxWqvFGeMa6FA7QJGRfXiJeBbVfOavqP1pteoLVo&vercel-blob-signature=Lf1rqmudCyh4Z7VceOy8qblVoPKZZMnPOMOL891Qzy0';
+
 export const DEFAULT_HOME: HomeContent = {
   hero: {
     eyebrow: 'Wellness & Personal Development',
@@ -96,8 +99,9 @@ export const DEFAULT_HOME: HomeContent = {
       'Lyte House Collective offers grounded mindfulness coaching, holistic wellness sessions, and guided personal development designed for lasting clarity and emotional balance.',
     primaryCtaLabel: 'Start Your Journey',
     secondaryCtaLabel: 'Explore Our Approach',
-    imageUrl: IMG_HERO,
-    imageAlt: 'Sunlit limestone and oak wellness sanctuary opening onto a misty botanical garden',
+    videoUrl: DEFAULT_HERO_VIDEO,
+    imageUrl: '',
+    imageAlt: 'Lyte House Collective sanctuary atmosphere',
   },
   philosophy: {
     eyebrow: 'Our Philosophy',

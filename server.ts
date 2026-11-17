@@ -72,9 +72,13 @@ function readDb(): DatabaseSchema {
     const raw = fs.readFileSync(DB_PATH, 'utf8');
     const parsed = JSON.parse(raw) as Partial<DatabaseSchema>;
     const defaults = cloneDefaultDb();
+    const homeData = parsed.home ?? defaults.home;
+    if (!homeData.hero.videoUrl) {
+      homeData.hero.videoUrl = defaults.home.hero.videoUrl;
+    }
     return {
       settings: parsed.settings ?? defaults.settings,
-      home: parsed.home ?? defaults.home,
+      home: homeData,
       about: parsed.about ?? defaults.about,
       approach: parsed.approach ?? defaults.approach,
       services: Array.isArray(parsed.services) ? parsed.services : defaults.services,
