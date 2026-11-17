@@ -1,0 +1,6 @@
+{
+  "name": "Lyte House Collective",
+  "description": "Wellness, mindfulness, holistic balance, and personal transformation sanctuary offering coaching, workshops, and guided sessions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
